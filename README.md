@@ -87,7 +87,7 @@ For this section we uploaded the sample notebook provided and made required chan
 
 ## Screen Recording
 ***
-:movie_camera: [Click here for the Screencast](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/Screencast.mp4)
+:movie_camera: [Click here for the Screencast](https://drive.google.com/file/d/1LbwWOPtVBOIP99pqyXy4c5bJ1FbYGkOg/view)
 ***
 
 # Standout Suggestions
