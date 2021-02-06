@@ -26,7 +26,7 @@ The Architecture of the project followed by step-by-step screenshots with a desc
 
 From the following list of Registered Dataset we selected the Bank Marketing dataset.<br /><br />
 
-![Registered Datasets](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/Project-1.png)<br /><br />
+![Registered Datasets](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/1.png)<br /><br />
 
 ## 2. Create Automated ML Experiment
 
