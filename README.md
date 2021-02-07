@@ -37,11 +37,15 @@ Second one - Run 1
 ## 3. Best Run Model
 
 Out of different algorithms tried in the Automated ML run the Best Model was ***Voting Ensemble*** which gave the accuracy of ***92.049%***. Then we deployed this model.<br /><br />
+To interact with the best chosen model for our task, we need to deploy it. This can be easily done in the Azure Machine Learning Studio, which provides us with an URL to send our test data to.
+
+In this step, we deployed our trained Voting Ensemble model using Azure Container Instance (ACI), with authentication enabled.
 
 ![Best Run Model](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/3.png)<br /><br />
 
 ## 4. Enable Application Insights
 
+Enabling Application Insights and Logs could have been done at the time of deployment, but for this project we achieved it using Azure Python SDK.<br /><br />
 In order to enable logging downloaded the configuration from Azure workspace and added to project and the made changes in logs.py file to enable application insights. <br /><br />
 
 ![Updates in logs.py](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/4.png)<br /><br />
@@ -52,6 +56,10 @@ We enabled Application Insights by making its value *True* in logs.py and ran lo
 
 ## 5. Configuring Swagger Docs
 
+To consume our best AutoML model using Swagger, we first need to download the swagger.json file provided to us in the Endpoints section of Azure Machine Learning Studio.<br /><br />
+
+Then we run the swagger.sh and serve.py files to be able to interact with the swagger instance running with the documentation for the HTTP API of the model.<br /><br />
+
 Then we configured swagger docs by installing swagger by changing the port number in bash script file and running it.<br /><br />
 
 ![Swagger default docs](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/6.png)<br /><br />
@@ -59,10 +67,12 @@ Then we configured swagger docs by installing swagger by changing the port numbe
 Then we started the server by running serve.py file inorder to serve your project's swagger.json file.<br /><br />
 
 ![Swagger project docs](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/7.png)<br /><br />
+![Swagger project docs](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/21.png)<br /><br />
 
 ## 6. Consuming Endpoints
-Then we added endpoint uri and key from deployed model *consume* section, in endpoints.py file and running the file.<br /><br />
 
+Finally, it's time to interact with the model and feed some test data to it. We do this by providing the scoring_uri and the key to the endpoint.py script and running it.<br /><br />
+After modifying both the scoring_uri and the key to match the key for my service and the URI that was generated after deployment, I ran the endpoint.py script to get inference from the deployed model.
 ![Modifying Endpoints.py](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/8.png)<br /><br />
 
 ![Consuming Endpoints](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/9.png)<br /><br />
@@ -71,16 +81,27 @@ Then we added endpoint uri and key from deployed model *consume* section, in end
 
 For this section we uploaded the sample notebook provided and made required changes in cell and ran the notebook. This created pipeline and then we deployed the pipeline which generated the endpoint for the pipeline which we consumed it.<br /><br />
 
+I created, consumed and published the best model for the bank marketing dataset using AutoML with Python SDK.
+Create a Pipeline in the SDK
 ![Pipeline created](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/14.png)<br /><br />
 
+After updating the notebook to have the same keys, URI, dataset, cluster, and model names already created, I run through the cells to create a pipeline.
+Pipeline in Azure Studio
 ![Pipeline endpoint created](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/15.png)<br /><br />
 
-![Pipeline endpoind published successfully](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/5.png)<br /><br />
+This is the pipeline created in the Pipelines section of Azure ML Studio.
+Pipeline Overview in Azure Studio
+![Pipeline endpoind published successfully](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/16.png)<br /><br />
 
+This is the Pipeline Overview in the Azure ML Studio.
+Create the REST endpoint
 ![Pipeline endpoint overview](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/17.png)<br /><br />
 
+This is the REST endpoint in Azure ML Studio, with a status of ACTIVE.
+Pipeline run details widget
 ![Pipeline run details widget](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/18.png)<br /><br />
 
+Pipeline endpoint run details widget
 ![Pipeline endpoint run details widget](https://github.com/prathyushapatel/Operationalizing_ML/blob/main/Images/19.png)<br /><br />
 
 
@@ -90,7 +111,7 @@ For this section we uploaded the sample notebook provided and made required chan
 :movie_camera: [Click here for the Screencast](https://drive.google.com/file/d/1LbwWOPtVBOIP99pqyXy4c5bJ1FbYGkOg/view)
 ***
 
-# Standout Suggestions
+# Future Improvements
 - Resolving data imbalance issue in the dataset can prevent the bais and could improve the model prediction even more.
 - Trying out deep learning (neural net) option when training the model, this could improve the accuracy.
 - Try setting the featurization parameter of the AutoMLConfig class to 'auto', meaning that the featurization step should be done automatically.
